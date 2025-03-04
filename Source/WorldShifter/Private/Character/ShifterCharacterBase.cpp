@@ -7,9 +7,16 @@
 AShifterCharacterBase::AShifterCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
-	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
-	Weapon->SetupAttachment(GetMesh(), FName("WeaponL"));
-	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+
+	WeaponR = CreateDefaultSubobject<USkeletalMeshComponent>("WeaponR");
+	WeaponL = CreateDefaultSubobject<USkeletalMeshComponent>("WeaponL");
+
+	WeaponR->SetupAttachment(GetMesh(), FName("WeaponR"));
+	WeaponL->SetupAttachment(GetMesh(), FName("WeaponL"));
+
+	WeaponR->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	WeaponL->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 
