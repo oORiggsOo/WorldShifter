@@ -3,8 +3,7 @@ DerivedDataCache
 Intermediate
 Saved
 Plugins/Developer
-Content/Assets
-Content/Blueprints
+Content/
 .vscode
 .vsconfig
 .vs
