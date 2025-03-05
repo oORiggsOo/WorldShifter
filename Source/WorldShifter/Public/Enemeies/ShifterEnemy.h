@@ -13,5 +13,7 @@ UCLASS()
 class WORLDSHIFTER_API AShifterEnemy : public AShifterCharacterBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	AShifterEnemy();
 };

@@ -3,3 +3,7 @@
 
 #include "Enemeies/ShifterEnemy.h"
 
+AShifterEnemy::AShifterEnemy()
+{
+	
+}
