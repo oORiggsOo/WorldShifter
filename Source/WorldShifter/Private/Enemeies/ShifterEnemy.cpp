@@ -5,5 +5,9 @@
 
 AShifterEnemy::AShifterEnemy()
 {
+
+	Shield = CreateDefaultSubobject<UStaticMeshComponent>("Shield");
+	Shield->SetupAttachment(GetMesh(), FName("Shield"));
+	Shield->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	
 }

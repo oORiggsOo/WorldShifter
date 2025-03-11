@@ -23,4 +23,5 @@ AShifterCharacterBase::AShifterCharacterBase()
 void AShifterCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }

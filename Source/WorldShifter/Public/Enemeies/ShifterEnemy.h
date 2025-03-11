@@ -16,4 +16,8 @@ class WORLDSHIFTER_API AShifterEnemy : public AShifterCharacterBase
 
 public:
 	AShifterEnemy();
+
+private:
+	UPROPERTY(EditAnywhere, Category= "Gear")
+	TObjectPtr<UStaticMeshComponent> Shield;
 };
