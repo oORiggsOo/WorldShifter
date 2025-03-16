@@ -11,6 +11,8 @@ class UInputMappingContext;
 class UInputComponent;
 struct FInputActionValue;
 
+class IEnemyInterface;
+
 UCLASS()
 class WORLDSHIFTER_API AShifterPlayerController : public APlayerController
 {
@@ -18,6 +20,7 @@ class WORLDSHIFTER_API AShifterPlayerController : public APlayerController
 
 public:
 	AShifterPlayerController();
+	virtual void PlayerTick(float DeltaTime) override;
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -25,12 +28,15 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
-
+	
 	void Move(const FInputActionValue& InputActionValue);
+
+	//CursorTrace
+	void CursorTrace();
+	TScriptInterface<IEnemyInterface> LastActor;
+	TScriptInterface<IEnemyInterface> ThisActor;
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
-
-	
 };

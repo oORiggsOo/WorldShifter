@@ -9,7 +9,8 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
-				"Engine"
+				"Engine",
+				"GameplayAbilities"
 			]
 		}
 	],
@@ -37,11 +38,19 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/a00eb1e478ae4a8fb655aa22f9125b07"
 		},
 		{
-			"Name": "GameplayAbilities",
+			"Name": "CodeView",
 			"Enabled": true
 		},
 		{
-			"Name": "CodeView",
+			"Name": "CameraShakePreviewer",
+			"Enabled": false
+		},
+		{
+			"Name": "GameplayCameras",
+			"Enabled": false
+		},
+		{
+			"Name": "GameplayAbilities",
 			"Enabled": true
 		}
 	]

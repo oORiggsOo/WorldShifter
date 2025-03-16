@@ -4,22 +4,73 @@
 #include "Player/ShifterPlayerController.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Interaction/EnemyInterface.h"
 
 AShifterPlayerController::AShifterPlayerController()
 {
 	bReplicates = true;
 }
 
+void AShifterPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
+}
+
+void AShifterPlayerController::CursorTrace()
+{
+	//Cursor Highlighting of player selected object
+	FHitResult CursortHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursortHit);
+	if (!CursortHit.bBlockingHit) return;
+
+	LastActor = ThisActor;
+	ThisActor = CursortHit.GetActor();
+
+	// Line Trace From Cursor & Actor Highlighter Logic 
+	if (LastActor == nullptr)
+	{
+		if (ThisActor != nullptr)
+		{
+			ThisActor->HighlightActor();
+		}
+		else
+		{
+			//do nothing for now
+		}
+	}
+	else // LastActor is Valid
+	{
+		if (ThisActor == nullptr)
+		{
+			LastActor->UnHighlightActor();
+		}
+		else // Both Actors Are Valid
+		{
+			if (LastActor != ThisActor)
+			{
+				LastActor->UnHighlightActor();
+				ThisActor->HighlightActor();
+			}
+			else
+			{
+				//do nothing for now
+			}
+		}
+	}
+}
+
 void AShifterPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	check(ShifterContext);
-	
+
 	//SubSystem
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>
 		(GetLocalPlayer());
 	check(Subsystem);
-	Subsystem->AddMappingContext(ShifterContext,0);
+	Subsystem->AddMappingContext(ShifterContext, 0);
 
 	//Cursor setup
 	bShowMouseCursor = true;
@@ -34,7 +85,7 @@ void AShifterPlayerController::BeginPlay()
 void AShifterPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-	
+
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AShifterPlayerController::Move);
