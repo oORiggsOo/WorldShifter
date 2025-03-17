@@ -2,12 +2,22 @@
 
 
 #include "Enemeies/ShifterEnemy.h"
+
+#include "AbilitySystem/ShifterAbilitySystemComponent.h"
+#include "AbilitySystem/ShifterAttributeSet.h"
 #include "WorldShifter/WorldShifter.h"
 
 
 
 AShifterEnemy::AShifterEnemy()
 {
+
+	AbilitySystemComponent = CreateDefaultSubobject<UShifterAbilitySystemComponent>("AbilitySystem_Component");
+	AbilitySystemComponent->SetIsReplicated(true);
+
+	AttributeSet = CreateDefaultSubobject<UShifterAttributeSet>("AttributeSet");
+
+	
 	// Set Highlighting for all enemies 
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 	

@@ -7,8 +7,7 @@
 AShifterCharacterBase::AShifterCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
-
-
+	
 	WeaponR = CreateDefaultSubobject<USkeletalMeshComponent>("WeaponR");
 	WeaponL = CreateDefaultSubobject<USkeletalMeshComponent>("WeaponL");
 
@@ -17,6 +16,11 @@ AShifterCharacterBase::AShifterCharacterBase()
 
 	WeaponR->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	WeaponL->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+UAbilitySystemComponent* AShifterCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
 }
 
 
