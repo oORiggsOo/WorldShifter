@@ -3,8 +3,9 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="t"
-                 name="test"
-                 start-page="test.md">
+                 name="WorldShifter"
+                 start-page="WorldShifterDoc.md">
 
-    <toc-element topic="test.md"/>
+    <toc-element topic="WorldShifterDoc.md"/>
+    <toc-element topic="starter-topic.md"/>
 </instance-profile>

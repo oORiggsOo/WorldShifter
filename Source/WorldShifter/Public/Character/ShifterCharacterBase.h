@@ -17,13 +17,13 @@ class WORLDSHIFTER_API AShifterCharacterBase : public ACharacter, public IAbilit
 
 public:
 	AShifterCharacterBase();
+	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 	
 protected:
 	virtual void BeginPlay() override;
-
-
+	
 	UPROPERTY(EditAnywhere, Category= "Combat")
 	TObjectPtr<USkeletalMeshComponent> WeaponR;
 

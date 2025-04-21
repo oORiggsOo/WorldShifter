@@ -16,10 +16,16 @@ class WORLDSHIFTER_API AShifterEnemy : public AShifterCharacterBase, public IEne
 	GENERATED_BODY()
 	
 public:
+	AShifterEnemy();
+	
+	// Enemy Interface
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
-	AShifterEnemy();
+	// End Enemy Interface
 
+protected:
+	virtual void BeginPlay() override;
+	
 private:
 	UPROPERTY(EditAnywhere, Category= "Gear")
 	TObjectPtr<UStaticMeshComponent> Shield;

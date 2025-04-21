@@ -4,14 +4,60 @@
 
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
+#include "AbilitySystemComponent.h"
 #include "ShifterAttributeSet.generated.h"
 
-/**
- * 
- */
+
+#define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
+	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
+	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
+	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
+	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
+
 UCLASS()
 class WORLDSHIFTER_API UShifterAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
+
+public:
+	UShifterAttributeSet();
+
+	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
+
+	// Life Attribute
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Life, Category = "Vital Attributes")
+	FGameplayAttributeData Life;
+	ATTRIBUTE_ACCESSORS(UShifterAttributeSet, Life);
+	
+	UFUNCTION()
+	void OnRep_Life(const FGameplayAttributeData& OldLife) const;
+	
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxLife, Category = "Vital Attributes")
+	FGameplayAttributeData MaxLife;
+	ATTRIBUTE_ACCESSORS(UShifterAttributeSet, MaxLife);
+	
+	UFUNCTION()
+	void OnRep_MaxLife(const FGameplayAttributeData& OldMaxLife) const;
+
+	// Magic Attribute
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Magic, Category = "Vital Attributes")
+	FGameplayAttributeData Magic;
+	ATTRIBUTE_ACCESSORS(UShifterAttributeSet, Magic);
+
+	UFUNCTION()
+	void OnRep_Magic(const FGameplayAttributeData& OldMagic) const;
+	
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxMagic, Category = "Vital Attributes")
+	FGameplayAttributeData MaxMagic;
+	ATTRIBUTE_ACCESSORS(UShifterAttributeSet, MaxMagic);
+	
+	UFUNCTION()
+	void OnRep_MaxMagic(const FGameplayAttributeData& OldMaxMagic) const;
+
+
+
+
 	
 };
+
+

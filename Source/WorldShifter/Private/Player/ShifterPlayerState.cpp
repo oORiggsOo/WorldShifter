@@ -10,6 +10,7 @@ AShifterPlayerState::AShifterPlayerState()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UShifterAbilitySystemComponent>("AbilitySystem_Component");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 
 	AttributeSet = CreateDefaultSubobject<UShifterAttributeSet>("AttributeSet");
 	

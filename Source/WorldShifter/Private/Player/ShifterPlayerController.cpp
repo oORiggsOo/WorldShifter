@@ -21,12 +21,12 @@ void AShifterPlayerController::PlayerTick(float DeltaTime)
 void AShifterPlayerController::CursorTrace()
 {
 	//Cursor Highlighting of player selected object
-	FHitResult CursortHit;
-	GetHitResultUnderCursor(ECC_Visibility, false, CursortHit);
-	if (!CursortHit.bBlockingHit) return;
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
 
 	LastActor = ThisActor;
-	ThisActor = CursortHit.GetActor();
+	ThisActor = CursorHit.GetActor();
 
 	// Line Trace From Cursor & Actor Highlighter Logic 
 	if (LastActor == nullptr)
@@ -37,7 +37,7 @@ void AShifterPlayerController::CursorTrace()
 		}
 		else
 		{
-			//do nothing for now
+			//
 		}
 	}
 	else // LastActor is Valid
@@ -50,8 +50,9 @@ void AShifterPlayerController::CursorTrace()
 		{
 			if (LastActor != ThisActor)
 			{
-				LastActor->UnHighlightActor();
+				
 				ThisActor->HighlightActor();
+				LastActor->UnHighlightActor();
 			}
 			else
 			{
@@ -69,8 +70,10 @@ void AShifterPlayerController::BeginPlay()
 	//SubSystem
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>
 		(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem->AddMappingContext(ShifterContext, 0);
+	if (Subsystem)
+	{
+		Subsystem->AddMappingContext(ShifterContext, 0);
+	}
 
 	//Cursor setup
 	bShowMouseCursor = true;
@@ -95,7 +98,7 @@ void AShifterPlayerController::Move(const FInputActionValue& InputActionValue)
 {
 	const FVector2D InputAxisVector = InputActionValue.Get<FVector2D>();
 	const FRotator Rotation = GetControlRotation();
-	const FRotator YawRotation(0.f, Rotation.Yaw, 0.0f);
+	const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
 
 	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector RightDirection = FRotationMatrix(Rotation).GetUnitAxis(EAxis::Y);

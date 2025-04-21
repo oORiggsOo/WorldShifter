@@ -4,57 +4,56 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "PDGRoomBase.generated.h"
+#include "PDGDRoomBase.generated.h"
 
 
 class UArrowComponent;
 class UBoxComponent;
 
 UCLASS()
-class WORLDSHIFTER_API APDGRoomBase : public AActor
+class WORLDSHIFTER_API APDGDRoomBase : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	APDGRoomBase();
+
+public:
+	APDGDRoomBase();
 
 
 	virtual void Tick(float DeltaTime) override;
-	
+
 protected:
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent>  Wall_1;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> Wall_2;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> Wall_3;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> Wall_4;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> Wall_5;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> Wall_6;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> Wall_7;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent> Wall_8;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UStaticMeshComponent>  Floor;
 	
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_1;
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UBoxComponent> BoxCollision;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_2;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_3;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_4;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_5;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_6;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_7;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Wall_8;
-	
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* Floor;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UBoxComponent* BoxCollision;
-
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UArrowComponent* Arrow;
-	
+	UPROPERTY(EditAnywhere, Category = "Components")
+	TObjectPtr<UArrowComponent> Arrow;
 };

@@ -1,5 +1,10 @@
 // Copyright jB 2024/2025
 
 
-#include "Ui/Widget/ShifterUserWidget.h"
+#include "WorldShifter/Public/UI/Widget/ShifterUserWidget.h"
 
+void UShifterUserWidget::SetWidgetController(UObject* InWidgetController)
+{
+	WidgetController = InWidgetController;
+	WidgetControllerSet();
+}

@@ -3,3 +3,12 @@
 
 #include "UI/WidgetController/OverLayWidgetController.h"
 
+#include "AbilitySystem/ShifterAttributeSet.h"
+
+void UOverLayWidgetController::BrodcastIntValues()
+{
+	const UShifterAttributeSet* ShifterAttributeSet = CastChecked<UShifterAttributeSet>(AttributeSet);
+
+	OnLifeChanged.Broadcast(ShifterAttributeSet->GetLife());
+	OnMaxLifeChanged.Broadcast(ShifterAttributeSet->GetMaxLife());
+}

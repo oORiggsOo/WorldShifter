@@ -2,7 +2,6 @@
 
 
 #include "Enemeies/ShifterEnemy.h"
-
 #include "AbilitySystem/ShifterAbilitySystemComponent.h"
 #include "AbilitySystem/ShifterAttributeSet.h"
 #include "WorldShifter/WorldShifter.h"
@@ -14,9 +13,9 @@ AShifterEnemy::AShifterEnemy()
 
 	AbilitySystemComponent = CreateDefaultSubobject<UShifterAbilitySystemComponent>("AbilitySystem_Component");
 	AbilitySystemComponent->SetIsReplicated(true);
-
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+	
 	AttributeSet = CreateDefaultSubobject<UShifterAttributeSet>("AttributeSet");
-
 	
 	// Set Highlighting for all enemies 
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
@@ -46,6 +45,12 @@ void AShifterEnemy::UnHighlightActor()
 	WeaponL->SetRenderCustomDepth(false);
 	Shield->SetRenderCustomDepth(false);
 	
+}
+
+void AShifterEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	AbilitySystemComponent->InitAbilityActorInfo(this, this );
 }
 
 

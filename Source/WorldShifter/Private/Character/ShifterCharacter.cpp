@@ -3,7 +3,11 @@
 
 #include "Character/ShifterCharacter.h"
 
+#include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/ShifterPlayerController.h"
+#include "Player/ShifterPlayerState.h"
+#include "UI/HUD/ShifterHUD.h"
 
 
 AShifterCharacter::AShifterCharacter()
@@ -15,7 +19,7 @@ AShifterCharacter::AShifterCharacter()
 	BackPack = CreateDefaultSubobject<USkeletalMeshComponent>("BackPack");
 	BackPack->SetupAttachment(GetMesh(), FName("BackPack"));
 	BackPack->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	
+
 	//Static Mesh's
 	Head = CreateDefaultSubobject<UStaticMeshComponent>("Head");
 	Head->SetupAttachment(GetMesh(), FName("Head"));
@@ -51,7 +55,37 @@ AShifterCharacter::AShifterCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
-
 }
 
+void AShifterCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
 
+	// Init Ability Info for Server
+	InitAbilityActorInfo();
+}
+
+void AShifterCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+
+	// Init Ability Info for Client
+	InitAbilityActorInfo();
+}
+
+void AShifterCharacter::InitAbilityActorInfo()
+{
+	AShifterPlayerState* ShifterPlayerState = GetPlayerState<AShifterPlayerState>();
+	check(ShifterPlayerState);
+	ShifterPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(ShifterPlayerState, this);
+	AbilitySystemComponent = ShifterPlayerState->GetAbilitySystemComponent();
+	AttributeSet = ShifterPlayerState->GetAttributeSet();
+
+	if (AShifterPlayerController* ShifterPlayerController = Cast<AShifterPlayerController>(GetController()))
+	{
+		if (AShifterHUD* ShifterHUD = Cast<AShifterHUD>(ShifterPlayerController->GetHUD()))
+		{
+			ShifterHUD->InitOverlay(ShifterPlayerController, ShifterPlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
+}

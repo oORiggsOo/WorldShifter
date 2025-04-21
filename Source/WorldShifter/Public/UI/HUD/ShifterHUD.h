@@ -4,9 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "ShfiterHUD.generated.h"
+#include "ShifterHUD.generated.h"
 
+
+class UAbilitySystemComponent;
+class UAttributeSet;
+class UOverLayWidgetController;
 class UShifterUserWidget;
+struct FWidgetControllerParams;
+
+
 /**
  * 
  */
@@ -20,14 +27,20 @@ public:
 	UPROPERTY()
 	TObjectPtr<UShifterUserWidget> OverLayWidget;
 
-	protected:
+	UOverLayWidgetController* GetOverLayWidgetController(const FWidgetControllerParams& WCParams);
 
-	virtual void BeginPlay() override;
+	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC,UAttributeSet* AS);
+
+
 
 private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UShifterUserWidget> OverLayWidgetClass;
-	
-	
+
+	UPROPERTY()
+	TObjectPtr<UOverLayWidgetController> OverLayWidgetController;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UOverLayWidgetController> OverLayWidgetControllerClass;
 };
