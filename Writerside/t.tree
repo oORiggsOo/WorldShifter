@@ -2,10 +2,3 @@
 <!DOCTYPE instance-profile
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
-<instance-profile id="t"
-                 name="WorldShifter"
-                 start-page="WorldShifterDoc.md">
-
-    <toc-element topic="WorldShifterDoc.md"/>
-    <toc-element topic="starter-topic.md"/>
-</instance-profile>

@@ -6,10 +6,12 @@
 
 UShifterAttributeSet::UShifterAttributeSet()
 {
-	InitLife(100.f);
+	InitLife(25.f);
 	InitMaxLife(100.f);
 	InitMagic(50.f);
-	InitMaxMagic(50.f);
+	InitMaxMagic(100.f);
+	InitPower(25.f);
+	InitMaxPower(100.f);
 }
 
 void UShifterAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const
@@ -19,6 +21,8 @@ void UShifterAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProp
 	DOREPLIFETIME_CONDITION_NOTIFY(UShifterAttributeSet, MaxLife, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UShifterAttributeSet, Magic, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UShifterAttributeSet, MaxMagic, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UShifterAttributeSet, Power, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UShifterAttributeSet, MaxPower, COND_None, REPNOTIFY_Always);
 }
 
 void UShifterAttributeSet::OnRep_Life(const FGameplayAttributeData& OldLife) const
@@ -39,4 +43,15 @@ void UShifterAttributeSet::OnRep_Magic(const FGameplayAttributeData& OldMagic) c
 void UShifterAttributeSet::OnRep_MaxMagic(const FGameplayAttributeData& OldMaxMagic) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UShifterAttributeSet, MaxMagic, OldMaxMagic);
+}
+
+
+void UShifterAttributeSet::OnRep_Power(const FGameplayAttributeData& OldPower) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UShifterAttributeSet, Power, OldPower);
+}
+
+void UShifterAttributeSet::OnRep_MaxPower(const FGameplayAttributeData& OldMaxPower) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UShifterAttributeSet, MaxPower, OldMaxPower);
 }

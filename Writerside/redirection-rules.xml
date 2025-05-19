@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="1ab2cb12">
+        <description>Created after removal of "WorldShifter" from Writerside_libraries</description>
+        <accepts>worldshifter.html</accepts>
+    </rule>
+    <rule id="5ab77db1">
+        <description>Created after removal of "About Game_Doc" from Writerside_libraries</description>
+        <accepts>game-doc.html</accepts>
+    </rule>
+    <rule id="5e859369">
+        <description>Created after removal of "About Game_Doc" from Game_Doc</description>
+        <accepts>game-doc.html</accepts>
+    </rule>
+</rules>

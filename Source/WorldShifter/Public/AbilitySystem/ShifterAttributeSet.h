@@ -24,6 +24,14 @@ public:
 
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 
+/* Look at implementing a Cypher System for the main Attributes
+ *
+ *  Life
+ *  Power
+ *  Magic
+ *  
+ */
+	
 	// Life Attribute
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Life, Category = "Vital Attributes")
 	FGameplayAttributeData Life;
@@ -37,8 +45,25 @@ public:
 	ATTRIBUTE_ACCESSORS(UShifterAttributeSet, MaxLife);
 	
 	UFUNCTION()
-	void OnRep_MaxLife(const FGameplayAttributeData& OldMaxLife) const;
+	void OnRep_MaxLife(const FGameplayAttributeData& OldMaxLife) const; 
 
+
+	// Power Attribute
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Power, Category = "Vital Attributes")
+	FGameplayAttributeData Power;
+	ATTRIBUTE_ACCESSORS(UShifterAttributeSet, Power);
+	
+	UFUNCTION()
+	void OnRep_Power(const FGameplayAttributeData& OldPower) const;
+	
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxPower, Category = "Vital Attributes")
+	FGameplayAttributeData MaxPower;
+	ATTRIBUTE_ACCESSORS(UShifterAttributeSet, MaxPower);
+
+	UFUNCTION()
+	void OnRep_MaxPower(const FGameplayAttributeData& OldMaxPower) const;
+	
+	
 	// Magic Attribute
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Magic, Category = "Vital Attributes")
 	FGameplayAttributeData Magic;

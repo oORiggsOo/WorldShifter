@@ -34,6 +34,7 @@ void AShifterEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AA
 		UShifterAttributeSet* MutableShifterAtrributeSet = const_cast<UShifterAttributeSet*>(ShifterAttributeSet);
 		MutableShifterAtrributeSet->SetLife(ShifterAttributeSet->GetLife() + 25.f);
 		MutableShifterAtrributeSet->SetMagic(ShifterAttributeSet->GetMagic() + 25.f);
+		MutableShifterAtrributeSet->SetPower(ShifterAttributeSet->GetPower() + 25.f);
 		Destroy();
 		// Hack "MutableShifterAtrributeSet"
 	}

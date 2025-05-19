@@ -12,7 +12,8 @@ UOverLayWidgetController* AShifterHUD::GetOverLayWidgetController(const FWidgetC
 	{
 		OverLayWidgetController = NewObject<UOverLayWidgetController>(this, OverLayWidgetControllerClass );
 		OverLayWidgetController->SetWidgetControllerParams(WCParams);
-
+		OverLayWidgetController->BindCallbacksToDependencies();
+		
 		return OverLayWidgetController;
 		
 	}
