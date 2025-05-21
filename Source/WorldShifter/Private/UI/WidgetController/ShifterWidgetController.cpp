@@ -18,5 +18,5 @@ void UShifterWidgetController::BrodcastIntValues()
 
 void UShifterWidgetController::BindCallbacksToDependencies()
 {
-	
+	                                                    
 }
